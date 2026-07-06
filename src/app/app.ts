@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-//import { RouterOutlet } from '@angular/router'; //Remover impotação do RouterOutlet, pois não é necessário para o componente App
+//!import { RouterOutlet } from '@angular/router'; //Remover impotação do RouterOutlet, pois não é necessário para o componente App
 import { Produto } from './components/produto/produto';
 @Component({
   selector: 'app-root',
