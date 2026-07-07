@@ -11,5 +11,5 @@ export class Produto {
   preco = 2500;
   mostrarPreco = true;
   mostraProduto = true;
-}  
+}   
  
