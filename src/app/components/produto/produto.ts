@@ -9,4 +9,7 @@ import { Component } from '@angular/core';
 export class Produto {
   produto = 'Notebook';
   preco = 2500;
+  mostrarPreco = true;
+  mostraProduto = true;
 }
+ 
