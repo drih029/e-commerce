@@ -12,4 +12,4 @@ export class App {
   protected readonly title = signal('e-commerce');
 }
  
- 
+  
