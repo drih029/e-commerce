@@ -15,7 +15,7 @@
     (produtoSelecionado)= "exibirProduto ($event)"
     >
     </app-produto> 
-    <button> (click)= "adicionarAocarrinho (produto:item)"Adiciona ao carrinho</button>
+    <button (click)= "adicionaAocarrinho(item)">Adiciona ao carrinho</button>
 }
 <p><button (click)="adicionarProduto()">Adicionar Produto</button></p>
 <h2>Total de produtos: {{ totalProdutos()}}</h2>
