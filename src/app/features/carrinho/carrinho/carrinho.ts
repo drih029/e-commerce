@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class Carrinho {
   //lógica do carrinho vira em aula futuras
-  //por ora,apenas exibe a página de carrinho
+  //por ora,apenas exibe a página de carrinho 
 }
