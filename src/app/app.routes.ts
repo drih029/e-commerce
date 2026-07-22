@@ -12,4 +12,4 @@ export const routes: Routes = [
     path:'carrinho',
     component: Carrinho
       }
-];
+]; 
