@@ -1,26 +1,15 @@
 //!Código  final lazyloading e loadComponent
 import { Routes } from '@angular/router'
-import path from 'path'
+import { ListaProdutos} from './features/produtos/lista-produtos/lista-produtos'
+import { Carrinho } from './features/carrinho/carrinho/carrinho';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent:() =>
-            import('./features/home/home/home').then((m) => m.Home),
+        component: ListaProdutos,
+        
     },
-
-    {
-        path:'produtos',
-    loadComponent:() =>
-        import('./features/produtos/lista-produtos/lista-produtos').then((m) => m.ListaProdutos),
-
-    },
-    {
-        path:'carrinho',
-        loadComponent: () =>
-            import('./features/carrinho/carrinho/carrinho').then((m) => m.Carrinho),
-    },
-    {
-        path:'**',
-        redirectTo:'',
-    },
+      { 
+    path:'carrinho',
+    component: Carrinho
+      }
 ];
