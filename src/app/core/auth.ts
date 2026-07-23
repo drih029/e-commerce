@@ -1,6 +1,6 @@
 import { signal, Signal } from "@angular/core";
 export const usuarioLogado = signal ( false)
-//!Define signal usuariLogado como (true),Permite acesso as rotas
+//!Define signal usuarioLogado como (true),Permite acesso as rotas
 export function login(){
     usuarioLogado.set(true);
 }
