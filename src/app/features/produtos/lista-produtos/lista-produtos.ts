@@ -30,7 +30,7 @@ export class ListaProdutos {
 
   carregando = signal(true);
 
-  //! criar o método para requisição dos produtos 
+  //! src/app/features/produtos/produto/produtos.service.ts 
 //?=============MÉTODO HTTP (API) foi modificado para ProdutosService==========
   carregarProdutos(){
     this.carregando.set(true);
