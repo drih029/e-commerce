@@ -1,15 +1,21 @@
 import { Component, signal } from '@angular/core';
-//!import { RouterOutlet } from '@angular/router'; //Remover impotação do RouterOutlet, pois não é necessário para o componente App
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { Produto } from './features/produtos/produto/produto';
-import { ListaProdutos } from './features/produtos/lista-produtos/lista-produtos';
+import { usuarioLogado,login,logout } from './core/auth';
+import { UpperCasePipe } from '@angular/common';
+//import { ListaProdutos } from './features/produtos/lista-produtos/lista-produtos';
 @Component({
   selector: 'app-root',
-  imports: [ListaProdutos],
+  imports: [RouterOutlet, RouterLink, UpperCasePipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('e-commerce');
+  nomeLoja = 'Eletrônica Martel'; //nome do e-commerce
+  usuarioLogado = usuarioLogado;
+  login = login;
+  logout = logout;
 }
  
   
