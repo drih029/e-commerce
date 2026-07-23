@@ -15,7 +15,7 @@ export class Produto {
   @Output() produtoSelecionado = new EventEmitter<string>();
 
   selecionarProduto() {
-    this.produtoSelecionado.emit(this.nome)
+    this.produtoSelecionado.emit(this.nome);
   }
 }   
  
