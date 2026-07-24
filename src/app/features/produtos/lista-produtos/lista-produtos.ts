@@ -33,7 +33,8 @@ export class ListaProdutos {
   //! src/app/features/produtos/produto/produtos.service.ts 
 //?=============MÉTODO HTTP (API) foi modificado para ProdutosService==========
   carregarProdutos(){
-    this.carregando.set(true);
+    this.carregando.set(true);//! Ativa loading
+    this.erro.set(null);//?limpa o erro anterior
 
     this.produtoService.buscarProduto().subscribe({
 
@@ -44,6 +45,8 @@ export class ListaProdutos {
       },
       error:(error)=> {
         console.error('Erro ao carregar os produtos alterados')
+        this.erro.set('Erro ao carregar os produtos.Verifique a conexão com a internet e tente novamente!.');
+        this.carregando.set(false);
       }
     });
   }
@@ -91,6 +94,7 @@ valorTotal = computed(() => { return this.produtos().reduce
   produtoSelecionado = signal <string | null>(null);
 
   carrinho =signal < { nome: string; preco: number }[]>([]);
+  erro = signal <string | null>(null);
 
   adicionaAoCarrinho(produto: { nome: string; preco: number }){
      this.carrinho.update(listaAtual => 
