@@ -6,7 +6,7 @@ import { UpperCasePipe } from '@angular/common';
 //import { ListaProdutos } from './features/produtos/lista-produtos/lista-produtos';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, UpperCasePipe],
+  imports: [RouterOutlet,RouterLink, UpperCasePipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -16,6 +16,6 @@ export class App {
   usuarioLogado = usuarioLogado;
   login = login;
   logout = logout;
+
 }
- 
-  
+

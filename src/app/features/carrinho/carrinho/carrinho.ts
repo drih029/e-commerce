@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './carrinho.css',
 })
 export class Carrinho {
-  //lógica do carrinho víra em aulas futuras
-  //por ora, apenas exibe a página de carrinho
+//lógica do carrinho vira em aula futuras
+//por ora, apenas exibimos a página do carrinho
 }
