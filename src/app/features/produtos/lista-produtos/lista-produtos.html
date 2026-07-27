@@ -38,7 +38,7 @@
     <button (click)="carregarProdutos()">Tentar Novamente</button>
 }
 <!--Estado 3: Sucesso-->
-@if (!carregando() && ! erro) {
+@if (!carregando() && ! erro()) {
     <p>Total de produtos: {{ totalProdutos() }}</p>
 
 <hr>
