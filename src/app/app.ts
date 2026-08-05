@@ -3,10 +3,11 @@ import { RouterOutlet} from '@angular/router';
 import { Produto } from './features/produtos/produto/produto';
 import { usuarioLogado,login,logout } from './core/auth';
 import { Header } from './shared/layout/header/header';
+import { MatAnchor } from "@angular/material/button";
 //import { ListaProdutos } from './features/produtos/lista-produtos/lista-produtos';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Header],
+  imports: [RouterOutlet, Header, MatAnchor],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
