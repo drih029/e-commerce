@@ -48,7 +48,7 @@
     [nome]= "item.nome"
     [preco]= "item.preco"
     (produtoSelecionado)="exibirProduto($event)"
-    (produtoAdicionado)="adicionaAoCarrinho($event)"
+    (produtoAdicionado)="adicionarAoCarrinho($event)"
     >
     </app-produto>
     <!--<button (click)="adicionaAoCarrinho(item)">Adicionar ao carrinho</button> -->
@@ -58,8 +58,8 @@
 
     <hr>
     <h2>carrinho</h2>
-    @for (item of carrinho(); track $index){
+    @for (item of carrinhoService.itens(); track $index){
         <p>{{item.nome | uppercase }} - {{item.preco | precoFormatado}}</p> 
 }
-<p><strong>intens no carrinho: </strong>{{quantidadeCarrinho()}}</p>
-<p><strong>Total no carrinho: </strong>{{ totalCarrinho() | precoFormatado}}</p> 
+<p><strong>intens no carrinho: </strong>{{carrinhoService.quantidadesdeItens()}}</p>
+<p><strong>Total no carrinho: </strong>{{ carrinhoService.totalItens() |precoFormatado}}</p> 
