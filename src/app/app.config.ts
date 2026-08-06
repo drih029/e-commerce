@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
      provideClientHydration(),
-     provideHttpClient((withFetch()),
+     provideHttpClient(withFetch(),
       withInterceptors([httpInterceptor])),
   ]
 };
