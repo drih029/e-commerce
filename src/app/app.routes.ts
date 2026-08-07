@@ -21,7 +21,7 @@ export const routes: Routes = [
         
        },
        {
-        path:'chekout',
+        path:'checkout',
         loadComponent:()=>
           import('./features/checkout/checkout/checkout').then((m)=> m.Checkout),
        },

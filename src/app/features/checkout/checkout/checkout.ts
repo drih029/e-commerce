@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component,inject} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms'
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,7 @@ import { CarrinhoService } from '../../../core/services/carrinho.service';
   styleUrl: './checkout.css',
 })
 export class Checkout {
-  carrinhoService=inject(CarrinhoService);
+  carrinhoService= inject(CarrinhoService);
 
   formulario = new FormGroup({ 
     nome: new FormControl(''),
