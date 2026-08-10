@@ -13,7 +13,7 @@ import { CarrinhoService } from '../../../core/services/carrinho.service';
   styleUrl: './header.css',
 })
 export class Header {
-  nomeLoja = 'Martel'
+  nomeLoja = '𝗠𝗔𝗥𝗧𝗘𝗟 🐧​'
   private carrinhoService = inject(CarrinhoService);
   quantidade = this.carrinhoService.quantidadesdeItens;
 }
