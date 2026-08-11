@@ -1,0 +1,31 @@
+<h2>Login</h2>
+<p>Informe seus dados para a Loja</p>
+@if (erroLogin()){
+    <p>Não foi possivel realizar o Login!</p>
+    <p style="color: red">Não foi possível realizar o login.</p>
+}
+<form>
+    <label>Email</label>
+    <p><input type="email" formControlName= "email" placeholder="=Email"></p>
+    @if(formulario.get('email')?.touched && formulario.get('email')?.invalid){
+        @if (formulario.get('email')?.errors?.['required']){
+            <small style="color: red;">E-mail é obrigatório </small>
+        }
+        @if(formulario.get('email')?.errors?.['email']){
+            <br>
+            <small style="color: red;">E-mail inválido</small>
+        }
+    }
+    <label>Senha</label>
+    <p><input type="password" formControlName= "senha" placeholder="Senha"></p>
+    @if (formulario.get('senha')?.touched && formulario.get('senha')?.invalid) {
+       @if (formulario.get('senha')?.errors?.['required']) {
+             <small style="color: red;">Senha é obrigatória</small>
+}
+       @if (formulario.get('senha')?.errors?.['minlength']) {
+        <br>
+       <small style="color: red;">Senha deve ter no mínimo 3 caracteres</small>
+}
+}
+    <p><input type="button" (click)="entrar()"[disabled]="formulario.invalid">Entrar</p>
+</form>

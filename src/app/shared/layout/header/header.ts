@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { Inject } from '@angular/core';
 import { CarrinhoService } from '../../../core/services/carrinho.service';
+import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-header',
   imports: [MatToolbarModule,MatButtonModule,MatIconModule,RouterLink,UpperCasePipe],
@@ -15,5 +16,13 @@ import { CarrinhoService } from '../../../core/services/carrinho.service';
 export class Header {
   nomeLoja = '𝗠𝗔𝗥𝗧𝗘𝗟 🐧​'
   private carrinhoService = inject(CarrinhoService);
+  private authService = inject(AuthService);
+
   quantidade = this.carrinhoService.quantidadesdeItens;
+  usuarioLogado = this.authService.usuarioLogado;
+  usuarioAtual = this.authService.usuarioAtual;
+  sair() {
+this.authService.logout();
 }
+}
+
