@@ -1,10 +1,11 @@
 //!Código  final lazyloading e loadComponent
 import { Routes } from '@angular/router'
 import { authGuard } from './core/auth.guard';
+import path from 'path';
+import { adminGuard } from './core/admin.guard';
 export const routes: Routes = [
     {
         path: '',
-
         loadComponent:()=>
           import('./features/home/home/home').then((m) =>m.Home), 
       },
@@ -22,7 +23,6 @@ export const routes: Routes = [
        },
        {
         path:'checkout',
-           canActivate:[authGuard],
         loadComponent:()=>
           import('./features/checkout/checkout/checkout').then((m)=> m.Checkout),
        },
@@ -31,6 +31,12 @@ export const routes: Routes = [
         loadComponent:() =>
           import('./features/login/login/login').then((m)=> m.Login),
        },
+       {
+        path:'admin',
+        loadComponent:() =>
+          import('./features/admin/admin/admin').then((m)=> m.Admin),
+       },
+
        {
         path:'**',
         redirectTo:'',
