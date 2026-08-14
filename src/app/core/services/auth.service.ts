@@ -32,7 +32,7 @@ const tokenSimulado =
 'assinatura-simulada';
 this.usuario.set({
 email,
-perfil: 'usuario',
+perfil,
 });
 this.tokenJwt.set(tokenSimulado);
 return true;
