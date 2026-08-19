@@ -8,7 +8,8 @@ import { inject } from '@angular/core';
 import { produtoService } from '../../../core/services/produtos.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CarrinhoService } from '../../../core/services/carrinho.service';
+import { AuthFacade } from '../../../core/facades/auth.facade';
+import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 
 
 @Component({
@@ -88,17 +89,15 @@ export class ListaProdutos {
 
     adicionarAoCarrinho (produto: { nome:string; preco: number}){
 
-      this.carrinhoService.adicionar(produto)
+      this.carrinhoFacade.adicionarProduto(produto);
     }
     
     
     //? ============ INJECT ============
     private produtoService = inject (produtoService);
-    public carrinhoService = inject (CarrinhoService);
-
-
-    quantidadeCarrinho = this.carrinhoService.quantidadesdeItens;
-    totalCarrinho = this.carrinhoService.totalItens;
+    carrinhoFacade = inject(CarrinhoFacade);
+quantidadeCarrinho = this.carrinhoFacade.quantidade;
+totalCarrinho = this.carrinhoFacade.total;
   }
 //criamos uma totalprodutos para calcular o total de produtos
 //adicionado valortotal para somar todos os valores da lista que forem adicionados

@@ -8,6 +8,7 @@ import { AbstractControl } from '@angular/forms';
 import { ValidationErrors } from '@angular/forms';
 import { CarrinhoService } from '../../../core/services/carrinho.service';
 import { signal } from '@angular/core';
+import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 
 @Component({
   selector: 'app-checkout',
@@ -18,7 +19,7 @@ import { signal } from '@angular/core';
 export class Checkout {
 
 
-  carrinhoService = inject(CarrinhoService);
+  carrinhoFacade = inject(CarrinhoFacade);
 
   formulario = new FormGroup ({
     nome: new FormControl ('', [Validators.required, Validators.minLength(3), nomeSemNumeros]),
@@ -28,7 +29,7 @@ export class Checkout {
 
   finalizar () {
     this.compraFinalizada.set(false);
-    if(this.carrinhoService.carrinhoVazio()){
+   if (this.carrinhoFacade.carrinhoVazio()) {
       console.log('Não é posssivel finalizar a comprar com o  carrinho vazio!')
       return;
     }
@@ -40,15 +41,14 @@ export class Checkout {
 
 
     const dados = this.formulario.value;
-    const itens = this.carrinhoService.itens();
-    const total = this.carrinhoService.totalItens();
-    
+    const itens = this.carrinhoFacade.itens();
+    const total = this.carrinhoFacade.total();
     console.log('Compra finalizada com sucesso');
     console.log('Dados do Formulário:', dados);
     console.log('Itens do carrinho:', itens);
     console.log('Total de compras:' , total);
 
-    this.carrinhoService.limpar();
+    this.carrinhoFacade.limparCarrinho();
     this.formulario.reset();
     this.compraFinalizada.set(true);
   }

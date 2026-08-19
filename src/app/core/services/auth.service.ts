@@ -44,4 +44,7 @@ this.tokenJwt.set(null);
 obterToken(): string | null {
 return this.tokenJwt();
 }
+obterPerfil():PerfilUsuario | null {
+      return this.usuario()?.perfil ?? null;
+}
 }
