@@ -1,12 +1,6 @@
 import { Injectable, signal } from "@angular/core";
-import { Signal } from "@angular/core";
 import { computed } from "@angular/core";
-import { single } from "rxjs";
-
-type ItemCarrinho = {
-    nome: string;
-    preco: number;
-}
+import { ItemCarrinho } from "../models/item-carrinho";
 
 @Injectable({
   providedIn:'root'
@@ -29,5 +23,11 @@ adicionar(produto:ItemCarrinho){
 }
 limpar(){
     this.carrinho.set([]);
+}
+// Remove um item específico pelo índice.
+removerPorIndice(indice: number) {
+this.carrinho.update((listaAtual) =>
+listaAtual.filter((_, index) => index !== indice)
+);
 }
 }

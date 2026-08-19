@@ -16,7 +16,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
 
     //!NOVO METODO TOKEN
-    const token = authFacade.obterToken();
+    const token = authFacade.obterPerfil();
     //! requisição de log 
     console.log('Requisição: ', req.url); 
     //!token
