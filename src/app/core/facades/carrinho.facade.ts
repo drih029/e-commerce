@@ -1,28 +1,26 @@
-import { Injectable, inject } from '@angular/core';
-import { CarrinhoService } from '../services/carrinho.service';
-import { ItemCarrinho } from '../models/item-carrinho';
-@Injectable({
-providedIn: 'root',
-})
+import { Injectable, inject } from "@angular/core";
+import { CarrinhoService } from "../services/carrinho.service";
+import { ItemCarrinho } from "../models/item-carrinho";
+
+@Injectable({providedIn:'root'})
+
 export class CarrinhoFacade {
-// A facade passa a ser a camada usada pelos componentes,
-// evitando que as telas dependam diretamente dos detalhes internos do service.
-private carrinhoService = inject(CarrinhoService);
-// Sinais expostos para leitura pelas telas.
-itens = this.carrinhoService.itens;
-quantidade = this.carrinhoService.quantidadesdeItens;
-total = this.carrinhoService.totalItens;
-carrinhoVazio = this.carrinhoService.carrinhoVazio;
-// Ação de alto nível para adicionar produto ao carrinho.
-adicionarProduto(produto: ItemCarrinho) {
-this.carrinhoService.adicionar(produto);
-}
-// Ação de alto nível para limpar o carrinho.
-limparCarrinho() {
-this.carrinhoService.limpar();
-}
-// Ação de alto nível para remover item.
-removerItem(indice: number) {
-this.carrinhoService.removerPorIndice(indice);
-}
+
+    private carrinhoService = inject(CarrinhoService);
+
+    itensCarrinho = this.carrinhoService.itens;
+    quantidadeCarrinho = this.carrinhoService.quantidadeItens;
+    totalCarrinho = this.carrinhoService.totalItens;
+    carrinhoVazio = this.carrinhoService.carrinhoVazio;
+
+    adicionarProdutoCarrinho(produto: ItemCarrinho){
+        this.carrinhoService.adicionar(produto);
+
+    }
+    limparCarrinho(){
+        this.carrinhoService.limpar();
+    }
+    removerItem(rmvItem:number){
+        this.carrinhoService.removerItem(rmvItem);
+    }
 }

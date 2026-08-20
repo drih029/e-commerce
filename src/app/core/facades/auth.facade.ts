@@ -10,7 +10,7 @@ private authService = inject(AuthService);
 // Sinais de autenticação expostos para leitura.
 usuarioAtual = this.authService.usuarioAtual;
 estaLogado = this.authService.usuarioLogado;
-ehAdmin = this.authService.admin;
+admin = this.authService.admin;
 token = this.authService.token;
 
 // Ação de alto nível para login.

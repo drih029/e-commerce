@@ -8,13 +8,12 @@ import { inject } from '@angular/core';
 import { produtoService } from '../../../core/services/produtos.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { AuthFacade } from '../../../core/facades/auth.facade';
 import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
-
+import { ItemCarrinho } from '../../../core/models/item-carrinho';
 
 @Component({
   selector: 'app-lista-produtos',
-  imports: [ PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule],
+  imports: [ PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule,],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
@@ -58,7 +57,7 @@ export class ListaProdutos {
   }
   totalProdutos = computed(() => this.produtos().length);
   
-  valorTotal  = computed(() => {return this.produtos().reduce((total, item) => total + item.preco,0)});
+  valorTotal = computed(() => {return this.produtos().reduce((total, item) => total + item.preco,0)});
   
   substituirprodutos (){
     this.produtos.set([
@@ -87,18 +86,19 @@ export class ListaProdutos {
 
     erro = signal <string | null > (null);
 
-    adicionarAoCarrinho (produto: { nome:string; preco: number}){
+    adicionarAoCarrinho (produto:ItemCarrinho){
 
-      this.carrinhoFacade.adicionarProduto(produto);
+      this.carrinhoFacade.adicionarProdutoCarrinho(produto);
     }
     
     
     //? ============ INJECT ============
     private produtoService = inject (produtoService);
-    carrinhoFacade = inject(CarrinhoFacade);
-quantidadeCarrinho = this.carrinhoFacade.quantidade;
-totalCarrinho = this.carrinhoFacade.total;
+    public carrinhoFacade = inject (CarrinhoFacade);
+
+
+    quantidadeCarrinho = this.carrinhoFacade.quantidadeCarrinho;
+    totalCarrinho = this.carrinhoFacade.totalCarrinho;
   }
 //criamos uma totalprodutos para calcular o total de produtos
 //adicionado valortotal para somar todos os valores da lista que forem adicionados
-

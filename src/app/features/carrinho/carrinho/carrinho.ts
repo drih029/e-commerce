@@ -24,6 +24,7 @@ export class Carrinho {
   }
   CancelarCompra(){
     this.authFacade.sair();
+    this.carrinhoFacade.limparCarrinho();
     this.router.navigateByUrl('/login');
   }
 }

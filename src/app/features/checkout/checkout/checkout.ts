@@ -6,21 +6,40 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { ValidationErrors } from '@angular/forms';
-import { signal } from '@angular/core';
 import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
-import { RouterLink } from '@angular/router';
+import { signal } from '@angular/core';
+import { RouterLink } from "@angular/router";
+import { Router } from '@angular/router';
+import { AuthFacade } from '../../../core/facades/auth.facade';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { MatAnchor } from "@angular/material/button";
+import { ItemCarrinho } from '../../../core/models/item-carrinho';
+
+type PedidoFinalizado = {
+  codigo: number;
+  cliente: string;
+  quantidadeItens: number;
+  total: number;
+  itens: ItemCarrinho[];
+}
 
 @Component({
   selector: 'app-checkout',
-  imports: [ReactiveFormsModule , RouterLink, PrecoFormatadoPipe],
+  imports: [ReactiveFormsModule, RouterLink, PrecoFormatadoPipe, MatAnchor],
   templateUrl: './checkout.html',
   styleUrl: './checkout.css',
 })
+
 export class Checkout {
 
 
+  pedidoFinalizado = signal<PedidoFinalizado | null> (null);
+  // compraFinalizada = signal(false);
+  
+  
   carrinhoFacade = inject(CarrinhoFacade);
+  router = inject (Router);
+  authFacade = inject (AuthFacade)
 
   formulario = new FormGroup ({
     nome: new FormControl ('', [Validators.required, Validators.minLength(3), nomeSemNumeros]),
@@ -29,9 +48,11 @@ export class Checkout {
   });
 
   finalizar () {
-    this.compraFinalizada.set(false);
-   if (this.carrinhoFacade.carrinhoVazio()) {
-      console.log('Não é posssivel finalizar a comprar com o  carrinho vazio!')
+    this.pedidoFinalizado.set(null);
+    // this.compraFinalizada.set(false);
+
+    if(this.carrinhoFacade.carrinhoVazio()){
+      console.log('Não é posssivel finalizar a comprar com o carrinho vazio!')
       return;
     }
     if (this.formulario.invalid){
@@ -42,23 +63,34 @@ export class Checkout {
 
 
     const dados = this.formulario.value;
-    const itens = this.carrinhoFacade.itens();
-    const total = this.carrinhoFacade.total();
+    const itens = this.carrinhoFacade.itensCarrinho();
+    const total = this.carrinhoFacade.totalCarrinho();
+
+    const pedido: PedidoFinalizado = {
+     codigo: Date.now(),
+     cliente: dados.nome ?? '',
+     quantidadeItens: itens.length,
+     total,
+     itens,
+    }
+   
+
     console.log('Compra finalizada com sucesso');
     console.log('Dados do Formulário:', dados);
-    console.log('Itens do carrinho:', itens);
-    console.log('Total de compras:' , total);
-
+    console.log('Dados do Pedido: ', pedido)
+    
+    
     this.carrinhoFacade.limparCarrinho();
     this.formulario.reset();
-    this.compraFinalizada.set(true);
+    // this.compraFinalizada.set(true);
+    this.pedidoFinalizado.set(pedido);
   }
 
 
-compraFinalizada = signal(false)
+
 sair(){
   this.authFacade.sair();
-  this.router.navigateByUrl('login');
+  this.router.navigateByUrl('/login')
 }
 }
  function nomeSemNumeros(control: AbstractControl): ValidationErrors | null {

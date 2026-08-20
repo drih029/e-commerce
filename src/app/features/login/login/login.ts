@@ -12,7 +12,7 @@ import { AuthFacade } from '../../../core/facades/auth.facade';
 })
 
 export class Login {
- private authFacade = inject(AuthFacade);
+  private authFacade = inject(AuthFacade);
   private router = inject (Router);
 
   errologin = signal(false);
@@ -29,15 +29,16 @@ export class Login {
       this.formulario.markAllAsTouched();
       return;
     }
-    const email =  this.formulario.value.email ?? '';
+    const email = this.formulario.value.email ?? '';
     const senha = this.formulario.value.senha ?? '';
     const loginRealizado = this.authFacade.realizarLogin(email, senha);
+
     if(!loginRealizado){
       this.errologin.set(true);
       return;
     }
      
-    if (this.authFacade.ehAdmin()) {
+    if(this.authFacade.admin()){
       this.router.navigateByUrl('/admin');
       return;
     }
